@@ -1,0 +1,12 @@
+.tab {
+  min-height: 40px;
+  min-width: 80px;
+  padding: 5px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  &:hover {
+    font-weight: bold;
+    cursor: help;
+  }
+}

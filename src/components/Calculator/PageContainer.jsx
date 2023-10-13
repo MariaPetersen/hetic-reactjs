@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import History from "./History";
 import NumberInput from "./NumberInput";
-import ToDo from "./ToDo";
 
 export default function PageContainer() {
   const [number, setNumber] = useState(0);
@@ -43,7 +42,6 @@ export default function PageContainer() {
       />
       <button onClick={addToHistory}>Enregistrer</button>
       <History history={history} />
-      <ToDo />
     </>
   );
 }
