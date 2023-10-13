@@ -1,6 +1,7 @@
 import { useState } from "react";
 import React from "react";
-import Button from "../Button/Button";
+// import Button from "../Button/Button";
+import Button from "@mui/material/Button";
 import "./styles.scss";
 
 export default function AddToTodo({ setTodo, todo }) {
@@ -38,7 +39,9 @@ export default function AddToTodo({ setTodo, todo }) {
         className="input"
         onKeyDown={handleKeyDown}
       />
-      <Button onClick={addTodo} text="Ajouter à la liste" />
+      <Button onClick={addTodo} variant="contained">
+        Ajouter à la liste
+      </Button>
     </div>
   );
 }
