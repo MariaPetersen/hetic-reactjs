@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
+import { Box, Typography } from "@mui/material";
 import "./styles.scss";
 import DisplayTasks from "../components/TodoList/DisplayTasks/DisplayTasks";
 import Filter from "../components/TodoList/Filter/Filter";
@@ -17,12 +19,13 @@ export default function TodoPage() {
   }, [todo]);
 
   return (
-    <div className="todoContainer">
-      <h2>Liste de tâches</h2>
+    <Box m={2}>
+      <Typography variant="h6" component="h3">
+        Liste de tâches
+      </Typography>
       <AddToTodo setTodo={setTodo} todo={todo} />
-      <Filter setCategory={setCategory} />
-      <hr />
+      <Filter setCategory={setCategory} category={category} />
       <DisplayTasks todo={todo} setTodo={setTodo} category={category} />
-    </div>
+    </Box>
   );
 }

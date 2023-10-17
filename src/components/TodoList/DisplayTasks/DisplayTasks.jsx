@@ -1,4 +1,5 @@
 import React from "react";
+import { Box } from "@mui/material";
 import ToDo from "../ToDo/ToDo";
 
 export default function DisplayTasks({ todo, setTodo, category }) {
@@ -25,14 +26,15 @@ export default function DisplayTasks({ todo, setTodo, category }) {
     setTodo(updatedTodo);
   }
   return (
-    <ul className="listContainer">
+    <Box sx={{ width: "100%" }}>
       {filteredTasks.map((element) => (
         <ToDo
           element={element}
           deleteTodo={deleteTodo}
           setCompletion={setCompletion}
+          key={element.id}
         />
       ))}
-    </ul>
+    </Box>
   );
 }

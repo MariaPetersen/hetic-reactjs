@@ -1,6 +1,7 @@
 import { useState } from "react";
 import React from "react";
-import Button from "../Button/Button";
+import { Grid, Input } from "@mui/material";
+import Button from "@mui/material/Button";
 import "./styles.scss";
 
 export default function AddToTodo({ setTodo, todo }) {
@@ -30,15 +31,26 @@ export default function AddToTodo({ setTodo, todo }) {
     }
   }
   return (
-    <div className="addToList">
-      <input
-        type="text"
-        value={newTodo}
-        onChange={onInputChange}
-        className="input"
-        onKeyDown={handleKeyDown}
-      />
-      <Button onClick={addTodo} text="Ajouter à la liste" />
-    </div>
+    <Grid
+      container
+      mt={2}
+      direction={{ xs: "column", sm: "row" }}
+      sx={{ justifyContent: "center" }}
+    >
+      <Grid item xs={2}>
+        <Input
+          type="text"
+          value={newTodo}
+          onChange={onInputChange}
+          onKeyDown={handleKeyDown}
+          sx={{ width: "100%s" }}
+        />
+      </Grid>
+      <Grid item xs={3}>
+        <Button onClick={addTodo} variant="contained">
+          Ajouter à la liste
+        </Button>
+      </Grid>
+    </Grid>
   );
 }

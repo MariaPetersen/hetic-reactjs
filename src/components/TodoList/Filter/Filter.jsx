@@ -1,19 +1,41 @@
 import React from "react";
-import Tab from "./../Tab/Tab";
-import "./styles.scss";
+import { Tabs, Tab, Box } from "@mui/material";
 
-export default function Filter({ setCategory }) {
+export default function Filter({ setCategory, category }) {
   function handleCategoryChange(category) {
     setCategory(category);
   }
 
   return (
-    <div className="categories">
-      <Tab onClick={() => handleCategoryChange("all")} text="Toutes" />
-      <hr className="verticalLine" />
-      <Tab onClick={() => handleCategoryChange("todo")} text="Non terminées" />
-      <hr className="verticalLine" />
-      <Tab onClick={() => handleCategoryChange("completed")} text="Terminées" />
-    </div>
+    <Box
+      sx={{
+        borderBottom: 1,
+        borderColor: "divider",
+      }}
+    >
+      <Tabs
+        onChange={handleCategoryChange}
+        value={category}
+        sx={{ width: "100%", justifyContent: "space-between" }}
+        variant="fullWidth"
+      >
+        <Tab
+          label="Toutes"
+          value="all"
+          onClick={() => handleCategoryChange("all")}
+        />
+        <Tab
+          label="À faire"
+          value="todo"
+          onClick={() => handleCategoryChange("todo")}
+        />
+        <Tab
+          label="Terminées"
+          value="completed"
+          onClick={() => handleCategoryChange("completed")}
+          text="Terminées"
+        />
+      </Tabs>
+    </Box>
   );
 }
