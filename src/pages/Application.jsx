@@ -1,18 +1,24 @@
-import React from "react";
-import { Link, Navigate, Outlet } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Outlet } from "react-router-dom";
+import { Typography, Box, Button } from "@mui/material";
 
 export default function Application() {
-  const isAdmin = true;
-
   return (
     <div>
       <div>
-        <span>Applications</span>
-        <br />
-        <Link to="applications/gestion">Calculateur</Link>
-        <Link to="applications/todolist">Tâches</Link>
+        <Typography variant="h3" component="h2">
+          Applications
+        </Typography>
+        <Box>
+          <Button component={Link} to="gestion">
+            Calculateur
+          </Button>
+          <Button component={Link} to="todolist">
+            Tâches
+          </Button>
+        </Box>
+        <Outlet />
       </div>
-      <div>{isAdmin ? <Outlet /> : <Navigate to="/" />}</div>
     </div>
   );
 }

@@ -1,20 +1,19 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import TodoPage from './pages/TodoPage';
-import Navigation from './pages/Navigation';
+import Navigation from './components/Navigation';
 import CalculatorPage from "./pages/CalculatorPage";
 import Application from './pages/Application';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
-import { useState } from 'react';
-import PrivateRoute from './pages/PrivateRoute';
-import Status from './pages/Status';
-import { UserContext } from './utils/contexts/UserContext';
-import Articles from './components/Articles/Articles';
+import Articles from './pages/Articles';
 import Article from './components/Articles/Article';
+import ResponsiveAppBar from './components/ResponsiveAppBar';
+import Auth from './components/Auth';
+import PrivateRoute from './PrivateRoute';
 
 function App() {
-  const [status, setStatus] = useState("admin");
+
   const articles = [
     { id: 1, title: "papou", content: "fdsfdsqfdsqfsdqfsqfsqfdsfdsq" },
     { id: 2, title: "con", content: "fdsfdsqfdsqfsdqfsqfsqfdsfdsq" },
@@ -22,24 +21,23 @@ function App() {
   ];
 
   return (
-    <div div className="App" >
-      <UserContext.Provider value={status}>
-        <Status setStatus={setStatus} />
-        <Navigation />
+    <Auth>
+      <div div className="App" >
+        <ResponsiveAppBar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="articles" element={<Articles articles={articles} />} />
-          <Route path="articles/:id" element={<Article articles={articles} />} />
-          <Route element={<PrivateRoute />}>
+          <Route element={<PrivateRoute />} >
+            <Route path="articles" element={<Articles articles={articles} />} />
+            <Route path="articles/:id" element={<Article articles={articles} />} />
             <Route path="/applications" element={<Application />}>
-              <Route path="applications/gestion" element={<CalculatorPage />} />
-              <Route path="applications/todolist" element={<TodoPage />} />
+              <Route path="/applications/gestion" element={<CalculatorPage />} />
+              <Route path="/applications/todolist" element={<TodoPage />} />
             </Route>
             <Route path="profile/:id" element={<Profile />} />
           </Route>
         </Routes>
-      </UserContext.Provider>
-    </div >
+      </div >
+    </Auth >
   );
 }
 

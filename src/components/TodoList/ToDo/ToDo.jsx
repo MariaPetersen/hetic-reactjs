@@ -1,26 +1,35 @@
 import React from "react";
 import Button from "@mui/material/Button";
-import { Checkbox } from "@mui/material";
-import "./styles.scss";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { Checkbox, FormControlLabel, ListItem } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function ToDo({ element, setCompletion, deleteTodo }) {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <>
-      <li key={element.id} className="list">
-        <div>
-          <Checkbox
-            onClick={() => setCompletion(element.id)}
-            checked={element.completion}
-            id={element.id}
-          />
-          <label htmlFor={element.id} className="label">
-            {element.text}
-          </label>
-        </div>
+      <ListItem
+        key={element.id}
+        className="list"
+        sx={{ justifyContent: "space-between" }}
+      >
+        <FormControlLabel
+          label={element.text}
+          control={
+            <Checkbox
+              onClick={() => setCompletion(element.id)}
+              checked={element.completion}
+              id={element.id}
+            />
+          }
+        ></FormControlLabel>
         <Button onClick={() => deleteTodo(element.id)} variant="contained">
-          Supprimer
+          {isMobile ? <DeleteIcon /> : "Supprimer"}
         </Button>
-      </li>
+      </ListItem>
     </>
   );
 }
